@@ -14,11 +14,9 @@ vue2 + vue-router + ES6/7 + less + element-ui + axios + echarts + vue-table-with
 npm run serve(访问后台系统)
 本地端口： http://localhost:8080/
 ```
-
 >后台环境（node + mysql）
->
 ```
-数据库:vueShop-api-server-master
+数据库：[vueShop-api-server-master]()
 打开数据库并运行文件app.js：打开终端(node app.js)
 ```
 项目展示
@@ -40,3 +38,4 @@ npm run serve(访问后台系统)
  管理权限设置 --完成  
  图表📈 -- 完成  
  富文本编辑器 -- 完成  
+
