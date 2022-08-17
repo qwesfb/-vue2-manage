@@ -1,24 +1,42 @@
-# vue-master
+About
+----------
+此项目是 vue + element-ui 构建的商城后台管理系统，主要包括用户管理，管理员权限设置，商品管理，商品参数管理，商品分类，订单管理，数据可视化等功能
 
-## Project setup
-```
-npm install
-```
+技术栈
+----------
+vue2 + vue-router + ES6/7 + less + element-ui + axios + echarts + vue-table-with-tree-grid
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
+#项目运行
+----------
+> 	前端页面环境
 ```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
+npm run serve(访问后台系统)
+本地端口： http://localhost:8080/
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+>后台环境（node + mysql）
+>
+```
+数据库:vueShop-api-server-master
+打开数据库并运行文件app.js：打开终端(node app.js)
+```
+项目展示
+----------
+```
+账户：admin   
+密码：123456
+```
+功能列表
+----------
+ 登陆/注销 -- 完成  
+ 添加用户 -- 完成  
+ 添加商品 -- 完成  
+ 管理用户 -- 完成  
+ 管理商品 -- 完成  
+ 商品参数设置 --完成  
+ 管理订单 --完成  
+ 权限验证 -- 完成  
+ 管理权限设置 --完成  
+ 图表📈 -- 完成  
+ 富文本编辑器 -- 完成  
