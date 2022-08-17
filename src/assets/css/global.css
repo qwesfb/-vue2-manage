@@ -1,0 +1,24 @@
+
+.home{
+    color: #333;
+}
+.login,.home,.roles,.right,.addgoods,.params,.reports{
+    height: 100%;
+  }
+
+.top{
+    margin-top: 20px;
+ }
+
+.Table,.block{
+    margin-top: 40px;
+}
+*{
+    list-style: none;
+}
+.reports .el-card__body{
+    padding: 0 !important;
+}
+.el-breadcrumb__inner a{
+    color: #fff !important;
+}
