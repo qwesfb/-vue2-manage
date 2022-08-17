@@ -16,8 +16,7 @@ npm run serve(访问后台系统)
 ```
 >后台环境（node + mysql）
 ```
-数据库：[vueShop-api-server-master]()
-打开数据库并运行文件app.js：打开终端(node app.js)
+数据库:[vueShop-api-server-master](https://github.com/qwesfb/vueShop-api-master)
 ```
 项目展示
 ----------
