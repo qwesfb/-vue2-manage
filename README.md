@@ -16,7 +16,7 @@ npm run serve(访问后台系统)
 ```
 >后台环境（node + mysql）
 ```
-数据库:[vueShop-api-server-master](https://github.com/qwesfb/vueShop-api-master)
+数据库:(vueShop-api-server-master)[https://github.com/qwesfb/vueShop-api-master]
 ```
 项目展示
 ----------
