@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import"./plugins/element.js"
+import './plugins/element.js'
 import 'element-ui/lib/theme-chalk/index.css'
-import "./assets/css/global.css"
+import './assets/css/global.css'
 import './plugins/api'
 import Cattable from 'vue-table-with-tree-grid'
 import VueQuilEditor from 'vue-quill-editor'
@@ -18,9 +18,9 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-//时间格式化
+// 时间格式化
 Vue.filter('dataFormat', function (originVal) {
-  const dt = new Date(originVal*1000)
+  const dt = new Date(originVal * 1000)
 
   const y = dt.getFullYear()
   const m = (dt.getMonth() + 1 + '').padStart(2, '0')
@@ -32,4 +32,3 @@ Vue.filter('dataFormat', function (originVal) {
 
   return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
 })
-

@@ -2,7 +2,7 @@
   <div class="nav">
       <el-row class="tac" >
           <el-col :span="24">
-              <el-menu      
+              <el-menu
               class="el-menu-vertical-demo"
               background-color="#d35151"
               text-color="#fff"
@@ -26,56 +26,51 @@
                 </template>
               </el-menu-item>
               </el-submenu>
-              
               </el-menu>
           </el-col>
           </el-row>
   </div>
 </template>
 
-
 <script>
-  export default {
-    name:'Nav',
-    props: ['isCollapse'],
-    data() {
-        return {
-             isCollapse:'',
-             //菜单数据
-             menuList:[],
-             iconsObj:{
-              '125' : 'el-icon-user',
-              '103' : 'el-icon-key',
-              '101' : 'el-icon-goods',
-              '102' : 'el-icon-box',
-              '145' : 'el-icon-s-data',
-             },
-             //激活状态
-             activePath:''
-        }
-    },
-    created(){
-      this.getMemuList(),
-      this.activePath = window.sessionStorage.getItem('activePath')
-    },
-    methods: {
-      //获取菜单信息
-      async getMemuList(){
-       const{ data: res } =  await this.$http.get('menus')
-        if(res.meta.status != 200) return this.$message.error(res.meta.msg)
-        this.menuList = res.data
-       //console.log(this.menuList);
+export default {
+  name: 'Nav-a',
+  props: ['isCollapse'],
+  data () {
+    return {
+      iscollapse: '',
+      // 菜单数据
+      menuList: [],
+      iconsObj: {
+        125: 'el-icon-user',
+        103: 'el-icon-key',
+        101: 'el-icon-goods',
+        102: 'el-icon-box',
+        145: 'el-icon-s-data'
       },
-      savaNvaState(activePath){
-        window.sessionStorage.setItem('activePath',activePath)
-        this.activePath=activePath
-      }
+      // 激活状态
+      activePath: ''
+    }
+  },
+  created () {
+    this.getMemuList()
+    this.activePath = window.sessionStorage.getItem('activePath')
+  },
+  methods: {
+    // 获取菜单信息
+    async getMemuList () {
+      const { data: res } = await this.$http.get('menus')
+      if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
+      this.menuList = res.data
+      // console.log(this.menuList);
     },
-    
+    savaNvaState (activePath) {
+      window.sessionStorage.setItem('activePath', activePath)
+      this.activePath = activePath
+    }
   }
+}
 </script>
-
-
 
 <style lang="less" scoped>
 .el-menu{

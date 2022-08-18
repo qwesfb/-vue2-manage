@@ -20,59 +20,56 @@
 <script>
 export default {
   name: 'login-1',
-  data() {
+  data () {
     return {
-      //表单信息
-      form:{
-        username:'admin',
-        password:'123456'
+      // 表单信息
+      form: {
+        username: 'admin',
+        password: '123456'
       },
-      //表单验证
-    rules:{
-      username:[ { required: true, message: '请输入用户名',  trigger: 'blur' } ],
-      password:[ { required: true, min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' } ]
+      // 表单验证
+      rules: {
+        username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+        password: [{ required: true, min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }]
+      }
     }
-    }
-    
   },
 
-  //监听
-  mounted(){
-   window.addEventListener('keydown',this.keyDown)
+  // 监听
+  mounted () {
+    window.addEventListener('keydown', this.keyDown)
   },
   methods: {
-    resetForm(){
-        this.$refs.ruleForm.resetFields();
+    resetForm () {
+      this.$refs.ruleForm.resetFields()
     },
-    login(){
-      this.$refs.ruleForm.validate(async(valid)  =>{
+    login () {
+      this.$refs.ruleForm.validate(async (valid) => {
         if (!valid) return
-        const { data:res } = await this.$http.post('login', this.form)
-        if(res.meta.status !== 200) {
+        const { data: res } = await this.$http.post('login', this.form)
+        if (res.meta.status !== 200) {
           return this.$message.error('登陆失败')
         }
         this.$message.success('登陆成功')
-        console.log(res);
-        //保存token到sessionstorage
-        window.sessionStorage.setItem('token',res.data.token)
+        console.log(res)
+        // 保存token到sessionstorage
+        window.sessionStorage.setItem('token', res.data.token)
         this.$router.push('/home')
       })
     },
-    //回车登入
-    keyDown(e){
-      if(e.keyCode === 13){
-        if(this.form.password === ''|| this.form.username ==''){
+    // 回车登入
+    keyDown (e) {
+      if (e.keyCode === 13) {
+        if (this.form.password === '' || this.form.username === '') {
           return false
-        }else{
+        } else {
           this.login()
         }
       }
     }
-  },
+  }
 }
 </script>
-
-​
 
 <style lang="less" scoped>
 .login{
@@ -100,4 +97,3 @@ export default {
 }
 
 </style>
-

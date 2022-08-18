@@ -125,64 +125,62 @@
 </div>
 </template>
 
-
 <script>
-	//1,导入echarts
-	import * as echarts from 'echarts'
-	import _ from 'lodash'
-	export default{
-		data(){
-			return{
-				options:{
-					title:{
-						text:'用户数据'
-					},
-                    //提示信息
-					tooltip:{
-						trigger:'axis',
-						axisPointer:{
-							type:'cross',
-							label:{
-								backgroundColor:'#d35151'
-							}
-						}
-					},
-                    //网格
-					grid:{
-						left:'3%',
-						right:'4%',
-						bottom:'3%',
-						containLabel:true
-					},
-                    //x轴
-					xAxis:[
-						{
-							boundaryGap:false
-						}
-					],
-					yAxis:[
-						{
-							type:'value'
-						}
-					]
-				}
-			}
-		},
+// 导入echarts
+import * as echarts from 'echarts'
+import _ from 'lodash'
+export default {
+  data () {
+    return {
+      options: {
+        title: {
+          text: '用户数据'
+        },
+        // 提示信息
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross',
+            label: {
+              backgroundColor: '#d35151'
+            }
+          }
+        },
+        // 网格
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        // x轴
+        xAxis: [
+          {
+            boundaryGap: false
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value'
+          }
+        ]
+      }
+    }
+  },
 
-        
-		//页面元素被渲染后执行
-		async mounted(){
-			//3, 基于准备好的dom，初始化echarts实例
-			var myChart = echarts.init(document.getElementById('main'))
-			// 4,准备好指定图表的配置项和数据
-			const{data:res}=await this.$http.get('reports/type/1')
-			if(res.meta.status!==200)return this.$message.error('获取折线图失败！')
-			//4,准备数据和配置项
-			const result =_.merge(res.data,this.options)
-			// 5，使用刚指定的配置项和数据显示图表。
-			myChart.setOption(result);
-		}
-	}
+  // 页面元素被渲染后执行
+  async mounted () {
+    // 3,基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'))
+    // 4,准备好指定图表的配置项和数据
+    const { data: res } = await this.$http.get('reports/type/1')
+    if (res.meta.status !== 200) return this.$message.error('获取折线图失败！')
+    // 4,准备数据和配置项
+    const result = _.merge(res.data, this.options)
+    // 5，使用刚指定的配置项和数据显示图表。
+    myChart.setOption(result)
+  }
+}
 </script>
 
 <style lang="less" scoped>
@@ -234,7 +232,6 @@
             color: #d35151;
           }
     }
-    
 }
 .left-card{
     width: 90%;

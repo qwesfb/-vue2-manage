@@ -1,7 +1,7 @@
 <template>
 <div class="orders">
 <el-card>
-    <el-row class="top"> 
+    <el-row class="top">
         <el-col :span="7"> <!--    @click="userList()"-->
         <el-input placeholder="查找订单" clearable v-model="ordersData.query"  @clear="getOrdersList()">
             <el-button slot="append" icon="el-icon-search" class="search" @click="getOrdersList()">
@@ -16,15 +16,15 @@
         <el-table-column type="index" width="30">
         </el-table-column>
         <el-table-column prop="order_number" label="订单编号" width="200">
-            
+
         </el-table-column>
         <el-table-column prop="order_price" label="订单价格" width="80">
         </el-table-column>
         <el-table-column  label="支付情况" width="120">
              <template slot-scope="scope">
-				 <el-tag type="danger" v-if="scope.row.order_pay=='0'">未付款</el-tag>
-				 <el-tag type="success" v-else> 已付款</el-tag>
-			</template>
+                <el-tag type="danger" v-if="scope.row.order_pay=='0'">未付款</el-tag>
+                <el-tag type="success" v-else> 已付款</el-tag>
+            </template>
 
         </el-table-column>
          <el-table-column  prop="is_send" label="发货情况" width="100">
@@ -100,21 +100,20 @@
 
     <!-- 物流信息 -->
     <el-dialog
-		title="查看物流信息"
-		:visible.sync="searchdialogVisible"
-		width="50%"
-	
-	>
-	<el-timeline :reverse="reverse">
-		<el-timeline-item
-			 v-for="(item,i) in logistics" 
-             :key="i"
-            :timestamp="item.time"
-			>
-			{{item.context}}
-		</el-timeline-item>
-	</el-timeline>
-	</el-dialog>
+    title="查看物流信息"
+    :visible.sync="searchdialogVisible"
+    width="50%"
+    >
+    <el-timeline :reverse="reverse">
+        <el-timeline-item
+        v-for="(item,i) in logistics"
+        :key="i"
+        :timestamp="item.time"
+    >
+        {{item.context}}
+        </el-timeline-item>
+    </el-timeline>
+    </el-dialog>
 
     <!-- 订单信息 -->
     <el-dialog title="订单信息" :visible.sync="ordersdialogTableVisible">
@@ -128,113 +127,109 @@
         </span>
     </el-dialog>
 
-
-
 </el-card>
 </div>
 </template>
 
 <script>
-    import cityData from './city_data2017_element'
-  import logistics from './logistics'     
+import cityData from './city_data2017_element'
+import logistics from './logistics'
 export default {
-    data() {
-        return {
-            ordersData:{
-                query:"",
-                pagenum:1,
-                pagesize:10,
-                
-            },
-            total:0,
-            ordersList:[],
-            dialogVisible:false,
-            editFormRules:{
-					adress1:[{ required: true, message: '请选择区/县', trigger: 'blur' }],
-					adress2:[{ required: true, message: '请输入详细的地址', trigger: 'blur' }]
-				},
-           adressForm:{
-					adress1:[],
-					adress2:''
-				},
-            //地址
-            //省市县的三级数据,一个数组，每一级都是对象
-            adressList:cityData,
-			editdialogVisible:false,
-            editForm:{},
-			
-            //物流
-            searchdialogVisible:false,
-            reverse:true,
-            logistics,
-            //订单
-            ordersdialogTableVisible:false,
-            goodsForm:[]
-        }
-    },
-    created() {
-        this.getOrdersList()
-    },
-    methods:{
-        async getOrdersList(){
-            const { data: res } = await this.$http.get(`orders`, {
-              params: this.ordersData
-            })
-            if(res.meta.status !== 200) return this.$message.error(res.meta.msg)
-            this.ordersList = res.data.goods
-            this.total =res.data.total
-            console.log(this.ordersList);
-        },
-        //监听页数条数
-         handleSizeChange(newSize) {
-            console.log(`每页 ${newSize} 条`)
-            this.ordersData.pagesize=newSize
-            this.getOrdersList()
-         },
-        //监听页码变化
-         handleCurrentChange(newPage) {
-            console.log(`当前页: ${newPage}`)
-            this.ordersData.pagenum=newPage
-        //重新调用data参数获取用户数据
-            this.getOrdersList()
-        },
-
-        handleChange (value) {
+  data () {
+    return {
+      ordersData: {
+        query: '',
+        pagenum: 1,
+        pagesize: 10
       },
-      async editAddress(id){
-        this.editdialogVisible = true
-        const{data:res} =await this.$http.get(`orders/`+id)
-        this.editForm = res.data
+      total: 0,
+      ordersList: [],
+      dialogVisible: false,
+      editFormRules: {
+        adress1: [{ required: true, message: '请选择区/县', trigger: 'blur' }],
+        adress2: [{ required: true, message: '请输入详细的地址', trigger: 'blur' }]
       },
+      adressForm: {
+        adress1: [],
+        adress2: ''
+      },
+      // 地址
+      // 省市县的三级数据,一个数组，每一级都是对象
+      adressList: cityData,
+      editdialogVisible: false,
+      editForm: {},
 
-     editInfo(){
-        this.$refs.editFormRef.validate(async valid =>{
-            if(!valid) return
-            const{data:res}=await this.$http.put(`orders/`+this.editForm.order_id, {
-                order_price:this.editForm.order_price,
-            consignee_addr:this.adressForm.adress1+' '+this.adressForm.adress2
-            })
-            if(res.meta.status !== 201){
-                return this.$message.error('修改订单失败！')
-            }
-             this.getOrdersList()
-            this.editdialogVisible = false
+      // 物流
+      searchdialogVisible: false,
+      reverse: true,
+      logistics,
+      // 订单
+      ordersdialogTableVisible: false,
+      goodsForm: []
+    }
+  },
+  created () {
+    this.getOrdersList()
+  },
+  methods: {
+    async getOrdersList () {
+      const { data: res } = await this.$http.get(`orders`, {
+        params: this.ordersData
+      })
+      if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
+      this.ordersList = res.data.goods
+      this.total = res.data.total
+      console.log(this.ordersList)
+    },
+    // 监听页数条数
+    handleSizeChange (newSize) {
+      console.log(`每页 ${newSize} 条`)
+      this.ordersData.pagesize = newSize
+      this.getOrdersList()
+    },
+    // 监听页码变化
+    handleCurrentChange(newPage) {
+      console.log(`当前页: ${newPage}`)
+      this.ordersData.pagenum = newPage
+      // 重新调用data参数获取用户数据
+      this.getOrdersList()
+    },
+
+    handleChange (value) {
+    },
+    async editAddress (id) {
+      this.editdialogVisible = true
+      const { data: res } = await this.$http.get(`orders/` + id)
+      this.editForm = res.data
+    },
+
+    editInfo () {
+      this.$refs.editFormRef.validate(async valid => {
+        if (!valid) return
+        const { data: res } = await this.$http.put(`orders/` + this.editForm.order_id, {
+          order_price: this.editForm.order_price,
+          consignee_addr: this.adressForm.adress1 + ' ' + this.adressForm.adress2
         })
-      },
-
-      editDialogClosed(){
-        this.$refs.editFormRef.resetFields()
-      },
-
-      //订单
-       async editOrder(id){
-        this.ordersdialogTableVisible =true
-        const{data:res} =await this.$http.get(`orders/`+id)
-       this.goodsForm = res.data
-       console.log(this.goodsForm);
-      },
+        if (res.meta.status !== 201) {
+          return this.$message.error('修改订单失败！')
+        }
+        this.getOrdersList()
+        this.editdialogVisible = false
+      })
     },
 
+    editDialogClosed () {
+      this.$refs.editFormRef.resetFields()
+    },
+
+    // 订单
+    async editOrder (id) {
+      this.ordersdialogTableVisible = true
+      const { data: res } = await this.$http.get(`orders/` + id)
+      this.goodsForm = res.data
+      console.log(this.goodsForm)
+    }
+  }
 }
 </script>
 

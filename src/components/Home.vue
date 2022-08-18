@@ -1,7 +1,7 @@
 <template>
 <div class="home">
 <el-container class="container">
-  <el-aside :class="isCollapse==false?'error':'success'"> 
+  <el-aside :class="isCollapse==false?'error':'success'">
     <Nav :isCollapse = 'isCollapse'></Nav>
   </el-aside>
   <el-container>
@@ -13,7 +13,6 @@
 </el-container>
 </div>
 </template>
-
 
 <style>
 .container{
@@ -33,51 +32,44 @@
 }
 .error{
   width: 180px !important;
-} 
-  .el-header{
-    font-size: 16px;
-    background-color: #7c9da5;
-    text-align: center;
-    line-height: 60px;
-    color: #fff;
-  }
-  
+}
+.el-header{
+  font-size: 16px;
+  background-color: #7c9da5;
+  text-align: center;
+  line-height: 60px;
+  color: #fff;
+}
+.el-main {
+  background-color: #E9EEF3;
+  padding: 0 !important;
+}
 
-  .el-main {
-    background-color: #E9EEF3;
-    padding: 0 !important;
-  }
-  
-  body > .el-container {
-    margin-bottom: 40px;
-  }
-  
-
-  .el-container .el-aside {
-    line-height: 260px;
-
-  }
-  
-
+body > .el-container {
+  margin-bottom: 40px;
+}
+.el-container .el-aside {
+  line-height: 260px;
+}
 </style>
 
 <script>
 import Nav from '../components/HomeParts/Nav'
 import Header from '../components/HomeParts/Header'
 export default {
-  name:"home",
-  components:{
+  name: 'home-1',
+  components: {
     Nav,
     Header
   },
-  data() {
+  data () {
     return {
       isCollapse: false
     }
   },
-  methods:{
-   btnstate(isCollapse){
-    this.isCollapse = isCollapse
+  methods: {
+    btnstate (isCollapse) {
+      this.isCollapse = isCollapse
     }
   }
 }
