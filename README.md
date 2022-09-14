@@ -4,7 +4,7 @@ About
 
 技术栈
 ----------
-vue2 + vue-router + ES6/7 + less + element-ui + axios + echarts + vue-table-with-tree-grid
+vue2 + vue-router + ES6/7 + less + element-ui + axios + echarts 
 
 
 #项目运行
